@@ -34,7 +34,7 @@
 // turns debugging on, used during testing, default=OFF
 #define DEBUG_OFF
 // allows syncing anywhere, default=OFF
-#define SYNC_ANYWHERE_OFF
+#define SYNC_ANYWHERE_ON
 
 // Mount type, default is _GEM (German Equatorial) other options are _FORK, _FORK_ALT.  _FORK switches off Meridian Flips after (1, 2 or 3 star) alignment is done.  _FORK_ALT disables Meridian Flips (1 star align.)
 // _ALTAZM is for Alt/Azm mounted 'scopes (1 star align only.)
@@ -105,19 +105,19 @@
                                      // for the most part this doesn't need to be changed, but adjust when needed.  Default=25
 
                                      // Axis1 is for RA/Az
-#define StepsPerDegreeAxis1  14400.0 // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
+#define StepsPerDegreeAxis1  3200.0 // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
                                      // Takahashi EM10b  :  200           * 8           * 18 * (1.25)     *  144/360              = 14400
                                      // Axis2 is for Dec/Alt
-#define StepsPerDegreeAxis2  14400.0 // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
+#define StepsPerDegreeAxis2  3200.0 // calculated as    :  stepper_steps * micro_steps * gear_reduction1 * (gear_reduction2/360)
                                      // Takahashi EM10b  :  200           * 8           * 18 * (1.25)     *  144/360              = 14400
                                      // the EM10b has two spur gears that drive the RA/Dec worms, they give an additional 1.25:1 reduction
                                      // in addition to the 18:1 gear heads on the steppers for a 22.5:1 final ratio before the worm/wheels at 144:1
                                      
                                      // PEC, number of steps for a complete worm rotation (in RA), (StepsPerDegreeAxis1*360)/gear_reduction2.  Ignored on Alt/Azm mounts.
-#define StepsPerWormRotationAxis1 36000
+#define StepsPerWormRotationAxis1 8000
                                      // Tak EM10         : (14400*360)/144 = 36000
 
-#define PECBufferSize           824  // PEC, buffer size, max should be no more than 3384, your required buffer size >= StepsPerAxis1WormRotation/(StepsPerDegeeAxis1/240)
+#define PECBufferSize           600  // PEC, buffer size, max should be no more than 3384, your required buffer size >= StepsPerAxis1WormRotation/(StepsPerDegeeAxis1/240)
                                      // for the most part this doesn't need to be changed, but adjust when needed.  824 seconds is the default.  Ignored on Alt/Azm mounts.
 
 #define REVERSE_AXIS1_OFF            // reverse the direction of movement for the HA/RA axis, adjust as needed or reverse your wiring so things move in the right direction
@@ -138,12 +138,12 @@
 // Stepper driver micro-step mode control (the _MODE_GOTO settings engage during slews at <128us/step)
 // M0, M1, and M2 are on Pins 22,23, and 24 for RA (Teensy3.1 Pins 13,14,15.)  M0, M1, M2 are on Pins 27,28,29 for Dec (Teensy3.1 Pins 18,19,20.)
 // DRV8825: 5=32x, 4=16x, 3=8x, 2=4x, 1=2x, 0=1x
-#define AXIS1_MODE_OFF               // programs the RA/Az uStep mode M0/M1/M2, optional and default _OFF. Other values 0 to 7 (0xb000 to 111): for example "#define AXIS1_MODE 4"
-#define AXIS1_MODE_GOTO_OFF          // programs the RA/Az uStep mode M0/M1/M2, used during gotos, optional and default _OFF. Other values 0 to 7 (0xb000 to 111): for example "#define AXIS1_MODE_GOTO 4"
-#define AXIS1_STEP_GOTO 1            // 1=goto mode is same as normal mode: for example if normal tracking mode is 32x and goto is 8x this would be 4
-#define AXIS2_MODE_OFF               // programs the Dec/Alt uStep mode M0/M1/M2, optional and default _OFF. Other values 0 to 7 (0xb000 to 111)
-#define AXIS2_MODE_GOTO_OFF          // programs the Dec/Alt uStep mode M0/M1/M2, used during gotos, optional and default _OFF. Other values 0 to 7 (0xb000 to 111)
-#define AXIS2_STEP_GOTO 1            // 1=goto mode is same as normal mode: for example if normal tracking mode is 32x and goto is 8x this would be 4
+#define AXIS1_MODE 7               // programs the RA/Az uStep mode M0/M1/M2, optional and default _OFF. Other values 0 to 7 (0xb000 to 111): for example "#define AXIS1_MODE 4"
+#define AXIS1_MODE_GOTO 1          // programs the RA/Az uStep mode M0/M1/M2, used during gotos, optional and default _OFF. Other values 0 to 7 (0xb000 to 111): for example "#define AXIS1_MODE_GOTO 4"
+#define AXIS1_STEP_GOTO 8            // 1=goto mode is same as normal mode: for example if normal tracking mode is 32x and goto is 8x this would be 4
+#define AXIS2_MODE 7               // programs the Dec/Alt uStep mode M0/M1/M2, optional and default _OFF. Other values 0 to 7 (0xb000 to 111)
+#define AXIS2_MODE_GOTO 1          // programs the Dec/Alt uStep mode M0/M1/M2, used during gotos, optional and default _OFF. Other values 0 to 7 (0xb000 to 111)
+#define AXIS2_STEP_GOTO 8            // 1=goto mode is same as normal mode: for example if normal tracking mode is 32x and goto is 8x this would be 4
 
 // Stepper driver decay mode control (for both Axis, the _MODE_GOTO settings engage during slews)
 // Axis1 decay mode is on Pin 32 and Axis2 decay mode is on Pin 33.  Options are _HIGH, _LOW, _OPEN, default is _OFF
