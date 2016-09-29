@@ -913,7 +913,8 @@ void processCommands() {
             if (abs(f)<0.1) { 
               trackingState = TrackingNone; 
             } else {
-              trackingTimerRateAxis1=(f/60.0)/1.00273790935;
+              //trackingTimerRateAxis1=(f/60.0)/1.00273790935;
+	      SetTrackingRate((f/60.0)/1.00273790935);
             }
           } else commandError=true;
         } else commandError=true;
