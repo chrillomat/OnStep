@@ -334,11 +334,11 @@ void SetDeltaTrackingRate() {
   fstepAxis2.fixed=doubleToFixed( (((double)StepsPerDegreeAxis2/240.0)*trackingTimerRateAxis2)/100.0 );
 }
 
-void SetTrackingRate(double r) {
+void SetTrackingRate(double r, double d) {
   az_deltaRateScale=r;
 #ifndef MOUNT_TYPE_ALTAZM
   az_deltaAxis1=r*15.0;
-  az_deltaAxis2=0.0;
+  az_deltaAxis2=d*15.0;
 #endif
 }
 
