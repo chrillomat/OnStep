@@ -556,6 +556,12 @@ void processCommands() {
               case 'A': sprintf(reply,"%ld%%",(worst_loop_time*100L)/9970L); worst_loop_time=0; quietReply=true; break;                           // DebugA, Workload
               
             }
+          } else
+          if (parameter[0]=='R') { // 9n: Misc.
+            switch (parameter[1]) {
+              case '1': sprintf(reply,"%06ld",(long)(az_deltaAxis1/15.0*1000.0)); quietReply=true; break;
+              case '2': sprintf(reply,"%06ld",(long)(az_deltaAxis2/15.0*1000.0)); quietReply=true; break;
+            }
           } else commandError=true;
         } else commandError=true;
         getEqu(&f,&f1,false);  
@@ -1093,7 +1099,7 @@ void processCommands() {
               trackingState = TrackingNone; 
             } else {
               //trackingTimerRateAxis1=(f/60.0)/1.00273790935;
-	      SetTrackingRate((f/60.0)/1.00273790935);
+	      SetTrackingRate((f/60.0)/1.00273790935,0);
             }
           } else commandError=true;
         } else commandError=true;
@@ -1137,6 +1143,16 @@ void processCommands() {
               if ((parameter[3]=='0') || (parameter[3]=='1')) { i=parameter[3]-'0'; if ((i==0) || (i==1)) { autoContinue=i;  EEPROM.write(EE_autoContinue,autoContinue); } }
             break; // autoContinue
           }
+        } else
+        if (parameter[0]=='R') { // 9n: Misc.
+          switch (parameter[1]) {
+            case '1':
+              SetTrackingRate(strtod(&parameter[3],NULL), az_deltaAxis2/15.0);
+            break;
+            case '2':
+              SetTrackingRate(az_deltaAxis1/15.0, strtod(&parameter[3],NULL));
+            break;
+          }
         } else commandError=true;
         //getEqu(&f,&f1,false);  
       } else 
@@ -1165,16 +1181,16 @@ void processCommands() {
      if (command[0]=='T') {
        if (command[1]=='+') { siderealInterval-=HzCf*(0.02); quietReply=true; } else
        if (command[1]=='-') { siderealInterval+=HzCf*(0.02); quietReply=true; } else
-       if (command[1]=='S') { SetTrackingRate(0.99726956632); refraction=false; quietReply=true; } else      // solar tracking rate 60Hz
-       if (command[1]=='L') { SetTrackingRate(0.96236513150); refraction=false; quietReply=true; } else      // lunar tracking rate 57.9Hz
-       if (command[1]=='Q') { SetTrackingRate(default_tracking_rate); quietReply=true; } else                // sidereal tracking rate
+       if (command[1]=='S') { SetTrackingRate(0.99726956632,0); refraction=false; quietReply=true; } else      // solar tracking rate 60Hz
+       if (command[1]=='L') { SetTrackingRate(0.96236513150,0); refraction=false; quietReply=true; } else      // lunar tracking rate 57.9Hz
+       if (command[1]=='Q') { SetTrackingRate(default_tracking_rate,0); quietReply=true; } else                // sidereal tracking rate
        if (command[1]=='R') { siderealInterval=15956313L; quietReply=true; } else                            // reset master sidereal clock interval
-       if (command[1]=='K') { SetTrackingRate(0.99953004401); refraction=false; quietReply=true; } else      // king tracking rate 60.136Hz
+       if (command[1]=='K') { SetTrackingRate(0.99953004401,0); refraction=false; quietReply=true; } else      // king tracking rate 60.136Hz
        if ((command[1]=='e') && ((trackingState==TrackingSidereal) || (trackingState==TrackingNone)) && (parkStatus==NotParked)) trackingState=TrackingSidereal; else
        if ((command[1]=='d') && ((trackingState==TrackingSidereal) || (trackingState==TrackingNone))) trackingState=TrackingNone; else
-       if (command[1]=='o') { refraction=refraction_enable; onTrack=true;  SetTrackingRate(default_tracking_rate); } else  // turn full compensation on, defaults to base sidereal tracking rate
-       if (command[1]=='r') { refraction=refraction_enable; onTrack=false; SetTrackingRate(default_tracking_rate); } else  // turn refraction compensation on, defaults to base sidereal tracking rate
-       if (command[1]=='n') { refraction=false; onTrack=false; SetTrackingRate(default_tracking_rate); } else              // turn refraction off, sidereal tracking rate resumes
+       if (command[1]=='o') { refraction=refraction_enable; onTrack=true;  SetTrackingRate(default_tracking_rate,0); } else  // turn full compensation on, defaults to base sidereal tracking rate
+       if (command[1]=='r') { refraction=refraction_enable; onTrack=false; SetTrackingRate(default_tracking_rate,0); } else  // turn refraction compensation on, defaults to base sidereal tracking rate
+       if (command[1]=='n') { refraction=false; onTrack=false; SetTrackingRate(default_tracking_rate,0); } else              // turn refraction off, sidereal tracking rate resumes
          commandError=true;
 
        // Only burn the new rate if changing the sidereal interval

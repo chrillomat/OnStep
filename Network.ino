@@ -461,15 +461,15 @@ void Ethernet_get() {
        SetSiderealClockRate(siderealInterval);
        cli(); SiderealRate=siderealInterval/StepsPerSecondAxis1; sei();
     }
-    if ((get_vals[0]=='s') && (get_vals[1]==0)) SetTrackingRate(default_tracking_rate); // sidereal
-    if ((get_vals[0]=='l') && (get_vals[1]==0)) SetTrackingRate(0.96236513150); // lunar
-    if ((get_vals[0]=='h') && (get_vals[1]==0)) SetTrackingRate(0.99726956632); // solar
+    if ((get_vals[0]=='s') && (get_vals[1]==0)) SetTrackingRate(default_tracking_rate,0); // sidereal
+    if ((get_vals[0]=='l') && (get_vals[1]==0)) SetTrackingRate(0.96236513150,0); // lunar
+    if ((get_vals[0]=='h') && (get_vals[1]==0)) SetTrackingRate(0.99726956632,0); // solar
   }
   // Refraction Rate Tracking control
   if ((get_names[0]=='r') && (get_names[1]=='r')) {
-    if ((get_vals[0]=='o') && (get_vals[1]=='t') && (get_vals[2]=='k') && (get_vals[3]==0)) { refraction=refraction_enable; onTrack=true; SetTrackingRate(default_tracking_rate); }
-    if ((get_vals[0]=='o') && (get_vals[1]=='n') && (get_vals[2]==0)) { refraction=refraction_enable; onTrack=false; SetTrackingRate(default_tracking_rate); }
-    if ((get_vals[0]=='o') && (get_vals[1]=='f') && (get_vals[2]=='f') && (get_vals[3]==0)) { refraction=false; onTrack=false; SetTrackingRate(default_tracking_rate); }
+    if ((get_vals[0]=='o') && (get_vals[1]=='t') && (get_vals[2]=='k') && (get_vals[3]==0)) { refraction=refraction_enable; onTrack=true; SetTrackingRate(default_tracking_rate,0); }
+    if ((get_vals[0]=='o') && (get_vals[1]=='n') && (get_vals[2]==0)) { refraction=refraction_enable; onTrack=false; SetTrackingRate(default_tracking_rate,0); }
+    if ((get_vals[0]=='o') && (get_vals[1]=='f') && (get_vals[2]=='f') && (get_vals[3]==0)) { refraction=false; onTrack=false; SetTrackingRate(default_tracking_rate,0); }
   }
   // Auto-continue
   if ((get_names[0]=='a') && (get_names[1]=='c')) {

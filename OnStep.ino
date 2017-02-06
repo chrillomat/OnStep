@@ -1250,7 +1250,7 @@ void setup() {
   cli(); SiderealRate=siderealInterval/StepsPerSecondAxis1; TakeupRate=SiderealRate/4L; sei();
   timerRateAxis1=SiderealRate;
   timerRateAxis2=SiderealRate;
-  SetTrackingRate(default_tracking_rate);
+  SetTrackingRate(default_tracking_rate,0);
 
   // backlash takeup rates
   timerRateBacklashAxis1=timerRateAxis1/BacklashTakeupRate;
