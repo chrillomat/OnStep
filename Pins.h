@@ -12,7 +12,7 @@
 
 // The status LED is a two wire jumper with a 10k resistor in series to limit the current to the LED
 //                                  Atmel   2560
-#define LEDposPin      8    // Pin 8 (LED)   PH5
+#define LEDposPin      13   // Pin 13 (LED)  PB7
 #define LEDnegPin      9    // Pin 9 (GND)   PH6
 #define LEDneg2Pin    10    // Pin 10 (GND)  PB4
 #define ReticulePin   44    // Pin 44 (GND)  
@@ -21,38 +21,38 @@
 // The Arduino attachInterrupt function works in two modes, on the '2560 it takes an Interrupt# on the Teensy and others it takes a Pin#
 #define PpsInt         2    // Interrupt 2 on Pin 21 (alternate Int3 on Pin20)
 
-#define Axis1DirPin   11    // Pin 11 (Dir)  PB5
-#define Axis1DirBit    5    //
-#define Axis1DirPORT  PORTB //
+#define Axis1DirPin   A1    // Pin 55 (Dir)  PF1
+#define Axis1DirBit    1    //
+#define Axis1DirPORT  PORTF //
 #define Axis15vPin    12    // Pin 12 (5V?)  PB6
-#define Axis1StepPin  13    // Pin 13 (Step) PB7
-#define Axis1StepBit   7    //
-#define Axis1StepPORT PORTB //
+#define Axis1StepPin  A0    // Pin 54 (Step) PF0
+#define Axis1StepBit   0    //
+#define Axis1StepPORT PORTF //
                             // Pin GND (GND)
 
 // Pins to enable/disable the stepper drivers and set microstep mode, optional and normally just hard-wired (DRV8825)/ignored (BED-A4988)
-#define Axis1_M0      22    // Pin 22 (Microstep Mode 0)
-#define Axis1_M1      23    // Pin 23 (Microstep Mode 1)
-#define Axis1_M2      24    // Pin 24 (Microstep Mode 2)
-#define Axis1_EN      25    // Pin 25 (Enabled when LOW)
+#define Axis1_M0      A5    // Pin 59 (Microstep Mode 0)
+#define Axis1_M1      A10    // Pin 64 (Microstep Mode 1)
+#define Axis1_M2      44    // Pin 44 (Microstep Mode 2)
+#define Axis1_EN      38    // Pin 38 (Enabled when LOW)
 #define Axis1_FAULT   26    // Pin 26 (Fault if LOW)
 #define Axis1_Mode    32    // Pin 32 (Mode switch for Axis1)
 
 // The HA(RA) and Dec jumpers (going to the big easy drivers) are simply four wire jumper cables, each has identical wiring - simple modular construction
-#define Axis2DirPin    4    // Pin 4 (Dir)   PG5
-#define Axis2DirBit    5    //
-#define Axis2DirPORT  PORTG //
+#define Axis2DirPin    A7    // Pin 61 (Dir)   PF7
+#define Axis2DirBit    7    //
+#define Axis2DirPORT  PORTF //
 #define Axis25vPin     5    // Pin 5 (5V?)   PE3
-#define Axis2StepPin   6    // Pin 6 (Step)  PH3
-#define Axis2StepBit   3    //
-#define Axis2StepPORT PORTH //
+#define Axis2StepPin   A6    // Pin 60 (Step)  PF6
+#define Axis2StepBit   6    //
+#define Axis2StepPORT PORTF //
 #define Axis2GndPin    7    // Pin 7 (GND)   PH4
 
 // Pins to enable/disable the stepper drivers and set microstep mode, optional and normally just hard-wired (DRV8825)/ignored (BED-A4988)
-#define Axis2_M0      27    // Pin 27 (Microstep Mode 0)
-#define Axis2_M1      28    // Pin 28 (Microstep Mode 1)
-#define Axis2_M2      29    // Pin 29 (Microstep Mode 2)
-#define Axis2_EN      30    // Pin 30 (Enabled when LOW)
+#define Axis2_M0      A9    // Pin 63 (Microstep Mode 0)
+#define Axis2_M1      40    // Pin 40 (Microstep Mode 1)
+#define Axis2_M2      42    // Pin 42 (Microstep Mode 2)
+#define Axis2_EN      A2    // Pin 56 (Enabled when LOW)
 #define Axis2_FAULT   31    // Pin 31 (Fault if LOW)
 #define Axis2_Mode    33    // Pin 33 (Mode switch for Axis2)
 
