@@ -77,6 +77,9 @@
 // can be turned on/off with the :Te# and :Td# commands regardless of this setting
 #define TRACK_REFRACTION_RATE_DEFAULT_OFF
 
+// come up with tracking enabled
+#define AUTOSTART_TRACKING_ON
+
 // Seperate pulse-guide rate so centering and guiding don't disturb each other, default=ON
 #define SEPERATE_PULSE_GUIDE_RATE_ON
 
