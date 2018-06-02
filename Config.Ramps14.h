@@ -1,3 +1,5 @@
+// TODO: pierside
+
 // -----------------------------------------------------------------------------------
 // Configuration for OnStep using RAMPS 1.4 Shield (Arduino Mega2560)
 
@@ -53,9 +55,9 @@
 // RTC (Real Time Clock) support, default=_OFF. 
 // Other options: RTC_DS3234 for a DS3234 on the default SPI interface pins (CS on Pin 53) or RTC_DS3231 for a DS3231 on the default I2C port (Pins 20 and 21, choose only one feature on these pins.)
 // Optionally wire the SQW output to the PPS pin below.
-#define RTC_OFF
+#define RTC_DS3231
 // PPS use _ON or _PULLUP to enable the input and use the built-in pullup resistor.  Sense rising edge on pin 2 for optional precision clock source (GPS, for example), default=_OFF
-#define PPS_SENSE_OFF
+#define PPS_SENSE_PULLUP
 
 // PEC sense on Pin 2 or threshold value on Analog 1.  Use _ON or _PULLUP to enable the input/use the built-in pullup resistor (digital input) or provide a comparison value (see below) for analog operation, default=_OFF
 // Analog values range from 0 to 1023 which indicate voltages from 0-3.3VDC on the analog pin, for example "PEC_SENSE 600" would detect an index when the voltage exceeds 2.92V
