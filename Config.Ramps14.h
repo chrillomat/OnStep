@@ -111,7 +111,7 @@
 
 // ADJUST THE FOLLOWING TO MATCH YOUR MOUNT --------------------------------------------------------------------------------
 #define REMEMBER_MAX_RATE_OFF        // set to _ON and OnStep will remember rates set in the ASCOM driver, Android App, etc. default=_OFF 
-#define MaxRate                   96 // microseconds per microstep default setting for gotos, can be adjusted for two times lower or higher at run-time
+#define MaxRate                   32 // microseconds per microstep default setting for gotos, can be adjusted for two times lower or higher at run-time
                                      // minimum* (fastest goto) is around 32 (Mega2560,) default=96 higher is ok
                                      // * = minimum can be lower, when both AXIS1/AXIS2_MICROSTEPS are used the compiler will warn you if it's too low
 
@@ -173,12 +173,12 @@
 // If used, this requires connections M0, M1, and M2 on Pins 23,25,27 for Axis1 (RA/Azm) and Pins 31,33,35 for Axis2 (Dec/Alt.)
 // Stepper driver models are as follows: (for example AXIS1_DRIVER_MODEL DRV8825,) A4988, LV8729, RAPS128, TMC2208, TMC2130 (spreadCycle,) 
 // TMC2130_QUIET (stealthChop tracking,) TMC2130_VQUIET (full stealthChop mode,) add _LOWPWR for 50% power during tracking (for example: TMC2130_QUIET_LOWPWR)
-#define AXIS1_DRIVER_MODEL TMC2130_QUIET      // Axis1 (RA/Azm):  Default _OFF, Stepper driver model (see above)
+#define AXIS1_DRIVER_MODEL TMC2130_QUIET_LOWPWR      // Axis1 (RA/Azm):  Default _OFF, Stepper driver model (see above)
 #define AXIS1_MICROSTEPS 16        // Axis1 (RA/Azm):  Default _OFF, Microstep mode when the scope is doing sidereal tracking (for example: AXIS1_MICROSTEPS 32)
-#define AXIS1_MICROSTEPS_GOTO 2   // Axis1 (RA/Azm):  Default _OFF, Optional microstep mode used during gotos (for example: AXIS1_MICROSTEPS_GOTO 2)
-#define AXIS2_DRIVER_MODEL TMC2130_QUIET     // Axis2 (Dec/Alt): Default _OFF, Stepper driver model (see above)
+#define AXIS1_MICROSTEPS_GOTO_OFF   // Axis1 (RA/Azm):  Default _OFF, Optional microstep mode used during gotos (for example: AXIS1_MICROSTEPS_GOTO 2)
+#define AXIS2_DRIVER_MODEL TMC2130_QUIET_LOWPWR     // Axis2 (Dec/Alt): Default _OFF, Stepper driver model (see above)
 #define AXIS2_MICROSTEPS 16        // Axis2 (Dec/Alt): Default _OFF, Microstep mode when the scope is doing sidereal tracking
-#define AXIS2_MICROSTEPS_GOTO 2   // Axis2 (Dec/Alt): Default _OFF, Optional microstep mode used during gotos
+#define AXIS2_MICROSTEPS_GOTO_OFF   // Axis2 (Dec/Alt): Default _OFF, Optional microstep mode used during gotos
 // Note: you can replace this section with the contents of "AdvancedStepperSetup.txt" . . . . . . . . . . . . . . . . . . . 
 
 // Stepper driver Fault detection, default=_OFF.
